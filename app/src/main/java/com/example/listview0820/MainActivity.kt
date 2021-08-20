@@ -2,6 +2,7 @@ package com.example.listview0820
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.listview0820.adapters.StudentAdapter
 import com.example.listview0820.data.StudentData
 import com.example.listview0820.databinding.ActivityMainBinding
 
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val mStudentList = ArrayList<StudentData>()
+
+    private lateinit var mAdapter: StudentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,5 +32,9 @@ class MainActivity : AppCompatActivity() {
         mStudentList.add(StudentData("이재환", 1997, "경기도 남양주시"))
         mStudentList.add(StudentData("이준서", 2000, "경기도 의왕시"))
         mStudentList.add(StudentData("장혜린", 1995, "인천시 남동구"))
+
+        mAdapter = StudentAdapter(this@MainActivity, R.layout.student_item, mStudentList)
+
+        binding.studentListView.adapter = mAdapter
     }
 }
